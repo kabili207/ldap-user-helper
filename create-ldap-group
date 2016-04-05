@@ -1,0 +1,24 @@
+#!/usr/bin/python2
+
+# import needed modules
+import getpass
+from ldaphelper import LdapHelper
+
+baseDN = "dc=zyrenth,dc=com"
+
+manager_dn = "cn=Manager," + baseDN
+manager_pass = getpass.getpass("Manager password: ")
+
+server_url = "ldap://localhost:389/"
+
+helper = LdapHelper(server_url, baseDN, manager_dn, manager_pass)
+helper.connect()
+
+group_name = LdapHelper.get_input("Group name")
+desc = LdapHelper.get_input("Description")
+
+gid = helper.create_group(group_name, desc)
+
+print('Created group "{}" ({})'.format(group_name, gid))
+
+helper.close()
