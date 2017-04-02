@@ -15,7 +15,7 @@ helper = LdapHelper(server_url, baseDN, manager_dn, manager_pass)
 helper.connect()
 
 group_name = LdapHelper.get_input("Group name")
-desc = LdapHelper.get_input("Description")
+desc = LdapHelper.get_input("Description", '')
 
 gid = helper.create_group(group_name, desc)
 

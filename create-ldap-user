@@ -20,10 +20,11 @@ passwd = getpass.getpass("Password: ")
 full_name = LdapHelper.get_input("Full name")
 home_dir = LdapHelper.get_input("Home directory", '/home/' + user)
 shell = LdapHelper.get_input('Login shell', '/bin/bash')
+desc = LdapHelper.get_input('Description', '')
 
 gid = 10000 # ldap-users group
 
-uid = helper.create_user(user, passwd, full_name, gid, home_dir, shell, '')
+uid = helper.create_user(user, passwd, full_name, gid, home_dir, shell, desc)
 
 print("Created user {} ({})".format(user, uid))
 
